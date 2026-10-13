@@ -49,6 +49,18 @@ public final class SyncEngine: @unchecked Sendable {
         self.client = client
     }
 
+    /// Wertfelder laut API-Referenz (users.dataTypes.dataPoints) zuerst,
+    /// ältere Vermutungen als Fallback. Nicht "milliseconds" o.ä. aufnehmen:
+    /// sonst greift womöglich `standardDeviationMilliseconds` (SDNN statt RMSSD).
+    public static let hrvSampleValueKeys = [
+        "rootMeanSquareOfSuccessiveDifferencesMilliseconds", "rmssd", "rmssdMilliseconds", "value",
+    ]
+    public static let hrvDailyValueKeys = [
+        "averageHeartRateVariabilityMilliseconds",
+        "deepSleepRootMeanSquareOfSuccessiveDifferencesMilliseconds",
+        "rmssdMilliseconds", "rmssd", "value",
+    ]
+
     /// Kompletter Sync in zwei Phasen: erst alle Tagesmetriken (schnell),
     /// dann die Intraday-Herzfrequenz (viele Requests, parallel + inkrementell).
     public func sync(
@@ -145,7 +157,7 @@ public final class SyncEngine: @unchecked Sendable {
             let result = try await client.fetchSamplesDetailed(
                 type: "heart-rate-variability",
                 payloadKey: "heartRateVariability",
-                valueKeys: ["rmssd", "rmssdMilliseconds", "milliseconds", "dailyRmssd", "value"],
+                valueKeys: Self.hrvSampleValueKeys,
                 start: windowStart.addingTimeInterval(-12 * 3600),
                 end: windowEnd
             )
@@ -164,7 +176,7 @@ public final class SyncEngine: @unchecked Sendable {
                     let daily = try await client.fetchDailyValues(
                         type: "daily-heart-rate-variability",
                         payloadKey: "dailyHeartRateVariability",
-                        valueKeys: ["rmssdMilliseconds", "rmssd", "milliseconds", "value"],
+                        valueKeys: Self.hrvDailyValueKeys,
                         start: windowStart,
                         end: windowEnd
                     )

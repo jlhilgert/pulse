@@ -75,6 +75,31 @@ let hrPayload = (hrPoint["heartRate"] as? [String: Any]) ?? [:]
 check(JSONExtract.firstDouble(in: hrPayload, keys: ["beatsPerMinute", "bpm"]) == 72, "Herzfrequenz-Wert extrahiert")
 check(JSONExtract.firstDate(in: hrPayload, keys: ["physicalTime"]) != nil, "Sample-Zeit extrahiert (verschachtelt)")
 
+let hrvPoint = jsonDict(#"""
+{
+  "heartRateVariability": {
+    "sampleTime": { "physicalTime": "2026-05-12T03:12:00Z" },
+    "rootMeanSquareOfSuccessiveDifferencesMilliseconds": 48.3,
+    "standardDeviationMilliseconds": 61,
+    "metadata": { "highFrequencyPower": 410, "lowFrequencyPower": 820 }
+  }
+}
+"""#)
+let hrvPayload = (hrvPoint["heartRateVariability"] as? [String: Any]) ?? [:]
+check(JSONExtract.firstDouble(in: hrvPayload, keys: SyncEngine.hrvSampleValueKeys) == 48.3, "HRV-RMSSD extrahiert (nicht SDNN)")
+
+let dailyHrvPoint = jsonDict(#"""
+{
+  "dailyHeartRateVariability": {
+    "date": { "year": 2026, "month": 5, "day": 12 },
+    "averageHeartRateVariabilityMilliseconds": 52.1,
+    "deepSleepRootMeanSquareOfSuccessiveDifferencesMilliseconds": 58.4
+  }
+}
+"""#)
+let dailyHrvPayload = (dailyHrvPoint["dailyHeartRateVariability"] as? [String: Any]) ?? [:]
+check(JSONExtract.firstDouble(in: dailyHrvPayload, keys: SyncEngine.hrvDailyValueKeys) == 52.1, "Tages-HRV extrahiert")
+
 let civil = JSONExtract.civilDateString(from: ["year": 2026, "month": 7, "day": 5])
 check(civil == "2026-07-05", "CivilDate-Objekt → yyyy-MM-dd")
 

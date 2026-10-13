@@ -5,7 +5,7 @@ import SwiftUI
 // App-Group-Container (die App schreibt ihn via WidgetBridge). Bewusst ohne
 // Core-Abhängigkeit — nur Primitive.
 
-private let appGroup = "group.net.dehlwes.pulse"
+private let appGroup = "group.pulse.jlhilgert.eu"
 
 /// Sprache aus dem App-Snapshot ("de"/"en", Default de).
 private var widgetIsGerman: Bool {

@@ -4,7 +4,7 @@ import WidgetKit
 /// Schreibt einen kleinen Recovery-Snapshot in den geteilten App-Group-Container,
 /// den das Widget liest. Bewusst nur Primitive (kein geteilter Typ nötig).
 enum WidgetBridge {
-    static let appGroup = "group.net.dehlwes.pulse"
+    static let appGroup = "group.pulse.jlhilgert.eu"
 
     enum Key {
         static let score = "recovery.score"

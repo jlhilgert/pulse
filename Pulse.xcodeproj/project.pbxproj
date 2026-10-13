@@ -80,7 +80,7 @@
 		0CB2F0E6CE69786B6EEB85A9 /* SleepDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepDetailView.swift; sourceTree = "<group>"; };
 		0F84C18DF46A68242E67E143 /* ChartViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViews.swift; sourceTree = "<group>"; };
 		0FF575A8FD8E307B5E68E285 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		13FEF2D2118D74C3572DF349 /* Pulse.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Pulse.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13FEF2D2118D74C3572DF349 /* Pulse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pulse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		185C24FCADF7A363EDE6C243 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		1C17143D0869BB2132DE5A9C /* StrainEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrainEngine.swift; sourceTree = "<group>"; };
 		1C1D271C269F20FB33EF4875 /* TrendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsView.swift; sourceTree = "<group>"; };
@@ -417,6 +417,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = PulseWidget/PulseWidget.entitlements;
+				DEVELOPMENT_TEAM = T7RF3AY5TC;
 				INFOPLIST_FILE = PulseWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Pulse;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -425,7 +426,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = net.dehlwes.pulse.widget;
+				PRODUCT_BUNDLE_IDENTIFIER = pulse.jlhilgert.eu.widget;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -498,6 +499,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = App/Pulse.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = T7RF3AY5TC;
 				INFOPLIST_FILE = App/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Pulse;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -505,7 +507,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = net.dehlwes.pulse;
+				PRODUCT_BUNDLE_IDENTIFIER = pulse.jlhilgert.eu;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -515,6 +517,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = PulseWidget/PulseWidget.entitlements;
+				DEVELOPMENT_TEAM = T7RF3AY5TC;
 				INFOPLIST_FILE = PulseWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Pulse;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -523,7 +526,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = net.dehlwes.pulse.widget;
+				PRODUCT_BUNDLE_IDENTIFIER = pulse.jlhilgert.eu.widget;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -536,6 +539,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = App/Pulse.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = T7RF3AY5TC;
 				INFOPLIST_FILE = App/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Pulse;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -543,7 +547,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = net.dehlwes.pulse;
+				PRODUCT_BUNDLE_IDENTIFIER = pulse.jlhilgert.eu;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
