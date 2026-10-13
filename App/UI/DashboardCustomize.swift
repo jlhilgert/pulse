@@ -2,52 +2,31 @@ import SwiftUI
 
 // MARK: - Dashboard-Module
 
-/// Die anpassbaren Karten der Heute-Seite. Reihenfolge und Sichtbarkeit
-/// werden in den Einstellungen persistiert.
+/// Die anpassbaren Karten unter „Mein Tag" auf der Heute-Seite. Reihenfolge
+/// und Sichtbarkeit werden in den Einstellungen persistiert. Ringe, Monitore
+/// und Hinweise darüber sind fest; früher gespeicherte Module wie `overview`
+/// fallen beim Laden per `init(rawValue:)` einfach heraus.
 enum DashboardModule: String, CaseIterable, Codable, Identifiable {
-    case overview
-    case recovery
-    case age
-    case sleep
-    case strain
     case workouts
     case steps
-    case health
     case journal
 
     var id: String { rawValue }
 
     func title(_ lang: PulseLanguage) -> String {
         switch (self, lang) {
-        case (.overview, .de): return "Tages-Übersicht"
-        case (.overview, .en): return "Daily overview"
-        case (.recovery, _): return "Recovery"
-        case (.age, .de): return "Pulse Alter"
-        case (.age, .en): return "Pulse Age"
-        case (.sleep, .de): return "Schlaf"
-        case (.sleep, .en): return "Sleep"
-        case (.strain, .de): return "Tagesbelastung"
-        case (.strain, .en): return "Daily strain"
         case (.workouts, .de): return "Sport"
         case (.workouts, .en): return "Workouts"
         case (.steps, .de): return "Schritte"
         case (.steps, .en): return "Steps"
-        case (.health, .de): return "Health-Monitor"
-        case (.health, .en): return "Health monitor"
         case (.journal, _): return "Journal"
         }
     }
 
     var symbol: String {
         switch self {
-        case .overview: return "circle.circle"
-        case .recovery: return "arrow.clockwise.heart"
-        case .age: return "person.text.rectangle"
-        case .sleep: return "bed.double"
-        case .strain: return "flame"
         case .workouts: return "figure.run"
         case .steps: return "shoeprints.fill"
-        case .health: return "heart.text.square"
         case .journal: return "checklist"
         }
     }
@@ -84,13 +63,13 @@ struct DashboardCustomizeSheet: View {
                         model.moveModules(from: from, to: to)
                     }
                 } footer: {
-                    Text(model.loc("Ziehen zum Sortieren, Schalter zum Ein-/Ausblenden. Gilt für die Heute-Seite.", "Drag to reorder, toggle to show/hide. Applies to the Today page."))
+                    Text(model.loc("Ziehen zum Sortieren, Schalter zum Ein-/Ausblenden. Gilt für „Mein Tag“ auf der Start-Seite.", "Drag to reorder, toggle to show/hide. Applies to “My Day” on the Home page."))
                 }
             }
             .environment(\.editMode, .constant(.active))
             .scrollContentBackground(.hidden)
             .background(Theme.bg)
-            .navigationTitle(model.loc("Heute anpassen", "Customize Today"))
+            .navigationTitle(model.loc("Mein Tag anpassen", "Customize My Day"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {

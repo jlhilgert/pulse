@@ -5,28 +5,38 @@ struct HealthMonitorView: View {
 
     var body: some View {
         NavigationStack {
-            ZStack {
-                Theme.bg.ignoresSafeArea()
-                ScrollView {
-                    VStack(spacing: 14) {
-                        Text(model.loc("Nächtliche Messwerte im Vergleich zu deinem persönlichen 30-Tage-Baseline-Band (± 1,65 SD). Ausreißer sind frühe Warnzeichen für Krankheit oder Übertraining.", "Overnight measurements compared to your personal 30-day baseline band (± 1.65 SD). Outliers are early warning signs of illness or overtraining."))
-                            .font(.footnote)
-                            .foregroundStyle(Theme.textSecondary)
-                            .frame(maxWidth: .infinity, alignment: .leading)
+            HealthMonitorContent()
+                .navigationTitle(model.loc("Gesundheit", "Health"))
+        }
+    }
+}
 
-                        if model.hasData {
-                            ForEach(model.healthStatuses, id: \.kind) { status in
-                                metricCard(status)
-                            }
-                        } else {
-                            EmptyDataHint(text: model.loc("Keine Daten vorhanden.", "No data available."))
+/// Inhalt der Gesundheit-Seite ohne eigenen NavigationStack — damit ihn auch
+/// die Heute-Seite per NavigationLink pushen kann.
+struct HealthMonitorContent: View {
+    @Environment(AppModel.self) private var model
+
+    var body: some View {
+        ZStack {
+            Theme.bg.ignoresSafeArea()
+            ScrollView {
+                VStack(spacing: 14) {
+                    Text(model.loc("Nächtliche Messwerte im Vergleich zu deinem persönlichen 30-Tage-Baseline-Band (± 1,65 SD). Ausreißer sind frühe Warnzeichen für Krankheit oder Übertraining.", "Overnight measurements compared to your personal 30-day baseline band (± 1.65 SD). Outliers are early warning signs of illness or overtraining."))
+                        .font(.footnote)
+                        .foregroundStyle(Theme.textSecondary)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+
+                    if model.hasData {
+                        ForEach(model.healthStatuses, id: \.kind) { status in
+                            metricCard(status)
                         }
+                    } else {
+                        EmptyDataHint(text: model.loc("Keine Daten vorhanden.", "No data available."))
                     }
-                    .padding(.horizontal, 16)
-                    .padding(.bottom, 24)
                 }
+                .padding(.horizontal, 16)
+                .padding(.bottom, 24)
             }
-            .navigationTitle(model.loc("Gesundheit", "Health"))
         }
     }
 

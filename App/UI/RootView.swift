@@ -31,7 +31,7 @@ struct MainTabs: View {
     var body: some View {
         TabView {
             DashboardView()
-                .tabItem { Label(model.loc("Heute", "Today"), systemImage: "gauge.with.needle") }
+                .tabItem { Label(model.loc("Start", "Home"), systemImage: "house.fill") }
             TrendsView()
                 .tabItem { Label("Trends", systemImage: "chart.xyaxis.line") }
             HealthMonitorView()
